@@ -1,0 +1,159 @@
+//question no. 1
+#include <fstream> // Include the file stream library for file processing
+#include <iomanip> // Include the input/output manipulation library for printing format on the monitor
+#include <iostream>  // Include the input/output stream library
+using namespace std; // Use the standard namespace
+
+// Function prototype for GetInches
+int GetInches(ifstream &rainFile, int numberOfDays);
+
+int main() {     // Start of the main function
+  float average; // Declare a float variable to store the average rainfall
+  float
+      totalRain; // Declare a float variable to store the total accumulated rain
+  int numberOfDays;  // Declare an integer variable to store the number of days
+                     // in calculation
+  ifstream rainFile; // Declare an input file stream variable to read data from
+                     // hard drive to memory
+
+  cout << fixed << showpoint; // Set the decimal point to be always shown and
+                              // the number to be shown in fixed point notation
+
+  rainFile.open("Rain.In"); // Open the file named "Rain.In"
+  rainFile >>
+      numberOfDays; // Read the first value from the file into numberOfDays
+
+  totalRain = GetInches(rainFile,
+                        numberOfDays); // Call the GetInches function and store
+                                       // the returned value in totalRain
+
+  if (totalRain == 0.0) // If totalRain is 0.0
+    cout << "There was no rain during this period."
+         << endl;                       // Print this message
+  else {                                // Otherwise
+    average = totalRain / numberOfDays; // Calculate the average rainfall
+    cout << "The average rain fall over "
+         << numberOfDays; // Print part of the message
+    cout << " days is " << setw(1) << setprecision(3) << average
+         << endl; // Print the rest of the message with the average rainfall
+  }
+
+  return 0; // Return 0 indicating successful execution
+} // End of the main function
+
+int GetInches(ifstream &rainFile,
+              int numberOfDays) { // Start of the GetInches function
+  float inches; // Declare a float variable to store a day's worth of rain
+  int counter;  // Declare an integer variable as a loop control variable
+  float totalRain = 0.0; // Initialize totalRain to 0.0
+
+  counter = 1; // Initialize counter to 1
+
+  while (counter <=
+         numberOfDays) { // While counter is less than or equal to numberOfDays
+    rainFile >> inches;  // Read a value from the file into inches
+    totalRain = totalRain + inches; // Add inches to totalRain
+    counter++;                      // Increment counter
+  }
+
+  return totalRain; // Return totalRain
+} // End of the GetInches function
+
+//question no. 2
+// Program Area calculates the area of a square.
+// The user is prompted to enter the number of inches on each
+// side. Note that "endl" in line 7 ends in the letter "l", not
+// the number one.
+
+#include <iostream>  // Include the input/output stream library
+using namespace std; // Use the standard namespace
+
+int main() {  // Start of the main function
+  int inches; // Declare an integer variable to store the number of inches on a
+              // side
+
+  cout << "Enter the number of inches on a side " // Print a message asking the
+                                                  // user to enter the number of
+                                                  // inches on a side
+       << endl; // End the line and move the cursor to the next line
+
+  cout << "Press the return key." // Print a message asking the user to press
+                                  // the return key
+       << endl; // End the line and move the cursor to the next line
+
+  cin >> inches; // Read the user's input into the variable inches
+
+  cout << endl // End the line and move the cursor to the next line
+       << "The area is " << inches * inches
+       << "."   // Calculate the area by squaring the number of inches and print
+                // the result
+       << endl; // End the line and move the cursor to the next line
+
+  return 0; // Return 0 indicating successful execution
+} // End of the main function
+
+//question no. 3
+#include <iostream>
+using namespace std;
+
+bool logic_to_find_leapYear(int year) {
+  if (year % 4 != 0) {
+    return false;
+  } else if (year % 100 != 0) {
+    return true;
+  } else if (year % 400 != 0) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+int main() {
+  int year;
+  cout << "Enter a year AD, for example, 1997" << endl;
+  cin >> year;
+  if (logic_to_find_leapYear(year)) {
+    cout << year << " is a leap year" << endl;
+  } else {
+    cout << year << " is not a leap year" << endl;
+  }
+}
+//question no. 4
+#include <iostream>
+using namespace std;
+
+int main() {
+  int n, i, j, space = 1;
+  cout << "Enter the number of rows: ";
+  cin >> n;
+  space = n - 1;
+  for (j = 1; j <= n; j++) {
+    for (i = 1; i <= space; i++) {
+      cout << " ";
+    }
+    space--;
+    for (i = 1; i <= 2 * j - 1; i++) {
+      if (i == 1 || i == 2 * j - 1) {
+        cout << "*";
+      } else {
+        cout << " ";
+      }
+    }
+    cout << endl;
+  }
+  space = 1;
+  for (j = 1; j <= n - 1; j++) {
+    for (i = 1; i <= space; i++) {
+      cout << " ";
+    }
+    space++;
+    for (i = 1; i <= 2 * (n - j) - 1; i++) {
+      if (i == 1 || i == 2 * (n - j) - 1) {
+        cout << "*";
+      } else {
+        cout << " ";
+      }
+    }
+    cout << endl;
+  }
+}
